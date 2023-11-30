@@ -69,5 +69,5 @@ trait HasRegistry
         return count($toDelete);
     }
 
-    protected abstract static function validate(string $class): void;
+    abstract protected static function validate(string $class): void;
 }
