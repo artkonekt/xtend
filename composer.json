@@ -1,0 +1,42 @@
+{
+    "name": "konekt/xtend",
+    "description": "Library to support creating extendable, plugin-aware applications",
+    "keywords": [
+        "konekt",
+        "plugins",
+        "extensions",
+        "hooks"
+    ],
+    "homepage": "https://github.com/artkonekt/xtend",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Attila Fulop"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Konekt\\Extend\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Konekt\\Extend\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
