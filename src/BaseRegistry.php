@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Konekt\Extend;
 
-use Konekt\Extend\Concerns\RequiresClassOrInterface;
 use Konekt\Extend\Concerns\HasRegistry;
+use Konekt\Extend\Concerns\RequiresClassOrInterface;
 use Konekt\Extend\Contracts\Registry;
 
 abstract class BaseRegistry implements Registry
