@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 /**
- * Contains the TestWidgetRegistry class.
+ * Contains the RegistryOfEntriesHavingNames class.
  *
  * @copyright   Copyright (c) 2023 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2023-11-30
+ * @since       2023-12-01
  *
  */
 
@@ -18,12 +18,12 @@ use Konekt\Extend\Concerns\HasRegistry;
 use Konekt\Extend\Concerns\RequiresClassOrInterface;
 use Konekt\Extend\Contracts\Registry;
 
-class TestWidgetRegistry implements Registry
+class RegistryOfEntriesHavingNames implements Registry
 {
     use HasRegistry;
     use RequiresClassOrInterface;
 
-    protected static string $requiredInterface = TestWidgetInterface::class;
+    protected static string $requiredInterface = EntryWithNameButNotRegisterableInterface::class;
 
     public static function make(string $id, array $parameters = []): TestWidgetInterface
     {

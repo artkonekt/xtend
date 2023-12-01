@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 /**
- * Contains the TestWidgetRegistry class.
+ * Contains the TestResetableRegistry class.
  *
  * @copyright   Copyright (c) 2023 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2023-11-30
+ * @since       2023-12-01
  *
  */
 
@@ -18,7 +18,7 @@ use Konekt\Extend\Concerns\HasRegistry;
 use Konekt\Extend\Concerns\RequiresClassOrInterface;
 use Konekt\Extend\Contracts\Registry;
 
-class TestWidgetRegistry implements Registry
+class TestResetableRegistry implements Registry
 {
     use HasRegistry;
     use RequiresClassOrInterface;

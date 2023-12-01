@@ -12,10 +12,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Konekt\Extend\Tests;
-
-use Konekt\Extend\Tests\Dummies\TestWidgetInterface;
+namespace Konekt\Extend\Tests\Dummies;
 
 class TestWidget2 implements TestWidgetInterface
 {
+    public static function getName(): string
+    {
+        return 'Test Widget 2';
+    }
 }

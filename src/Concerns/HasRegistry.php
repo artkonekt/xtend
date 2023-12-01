@@ -14,19 +14,21 @@ declare(strict_types=1);
 
 namespace Konekt\Extend\Concerns;
 
+use Konekt\Extend\Contracts\Registerable;
+
 trait HasRegistry
 {
     protected static array $registry = [];
 
     public static function add(string $id, string $class): bool
     {
-        if (array_key_exists($id, self::$registry)) {
+        if (array_key_exists($id, static::$registry)) {
             return false;
         }
 
         static::validate($class);
 
-        self::$registry[$id] = $class;
+        static::$registry[$id] = $class;
 
         return true;
     }
@@ -35,21 +37,21 @@ trait HasRegistry
     {
         static::validate($class);
 
-        self::$registry[$id] = $class;
+        static::$registry[$id] = $class;
     }
 
     public static function getClassOf(string $id): ?string
     {
-        return self::$registry[$id] ?? null;
+        return static::$registry[$id] ?? null;
     }
 
     public static function delete(string $id): bool
     {
-        if (!array_key_exists($id, self::$registry)) {
+        if (!array_key_exists($id, static::$registry)) {
             return false;
         }
 
-        unset(self::$registry[$id]);
+        unset(static::$registry[$id]);
 
         return true;
     }
@@ -57,16 +59,40 @@ trait HasRegistry
     public static function deleteClass(string $class): int
     {
         $toDelete = [];
-        foreach (self::$registry as $id => $entry) {
+        foreach (static::$registry as $id => $entry) {
             if ($entry === $class) {
                 $toDelete[] = $id;
             }
         }
         foreach ($toDelete as $id) {
-            unset(self::$registry[$id]);
+            unset(static::$registry[$id]);
         }
 
         return count($toDelete);
+    }
+
+    public static function reset(): void
+    {
+        static::$registry = [];
+    }
+
+    public static function ids(): array
+    {
+        return array_keys(static::$registry);
+    }
+
+    public static function choices(): array
+    {
+        $result = [];
+
+        foreach (self::$registry as $id => $class) {
+            $result[$id] = match(is_subclass_of($class, Registerable::class) || method_exists($class, 'getName')) {
+                true => $class::getName(),
+                default => $class,
+            };
+        }
+
+        return $result;
     }
 
     abstract protected static function validate(string $class): void;

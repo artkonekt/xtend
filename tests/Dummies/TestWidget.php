@@ -16,4 +16,8 @@ namespace Konekt\Extend\Tests\Dummies;
 
 class TestWidget implements TestWidgetInterface
 {
+    public static function getName(): string
+    {
+        return 'Test Widget';
+    }
 }

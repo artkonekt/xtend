@@ -14,8 +14,17 @@ declare(strict_types=1);
 
 namespace Konekt\Extend\Tests;
 
+use Konekt\Extend\Tests\Dummies\NamedEntry1;
+use Konekt\Extend\Tests\Dummies\NamedEntry2;
+use Konekt\Extend\Tests\Dummies\NoNameEntry1;
+use Konekt\Extend\Tests\Dummies\NoNameEntry2;
 use Konekt\Extend\Tests\Dummies\NotATestWidget;
+use Konekt\Extend\Tests\Dummies\RegistryOfEntriesHavingNames;
+use Konekt\Extend\Tests\Dummies\RegistryOfEntriesWithoutNames;
+use Konekt\Extend\Tests\Dummies\RegistryOfRegisterables;
+use Konekt\Extend\Tests\Dummies\TestResetableRegistry;
 use Konekt\Extend\Tests\Dummies\TestWidget;
+use Konekt\Extend\Tests\Dummies\TestWidget2;
 use Konekt\Extend\Tests\Dummies\TestWidget3;
 use Konekt\Extend\Tests\Dummies\TestWidget4;
 use Konekt\Extend\Tests\Dummies\TestWidgetRegistry;
@@ -109,5 +118,50 @@ class RegistryTest extends TestCase
         TestWidgetRegistry::add('inst', TestWidget::class);
 
         $this->assertInstanceOf(TestWidget::class, TestWidgetRegistry::make('inst'));
+    }
+
+    /** @test */
+    public function it_can_be_reset_to_zero_items()
+    {
+        TestResetableRegistry::add('R1', TestWidget::class);
+        TestResetableRegistry::add('R2', TestWidget::class);
+
+        $this->assertCount(2, TestResetableRegistry::ids());
+        TestResetableRegistry::reset();
+
+        $this->assertCount(0, TestResetableRegistry::ids());
+    }
+
+    /** @test */
+    public function choices_returns_the_names_of_registerables()
+    {
+        RegistryOfRegisterables::add('N3', TestWidget3::class);
+        RegistryOfRegisterables::add('N4', TestWidget4::class);
+
+        $choices = RegistryOfRegisterables::choices();
+        $this->assertEquals(TestWidget3::getName(), $choices['N3']);
+        $this->assertEquals(TestWidget4::getName(), $choices['N4']);
+    }
+
+    /** @test */
+    public function choices_returns_the_names_of_entries_with_get_name_method()
+    {
+        RegistryOfEntriesHavingNames::add('NE1', NamedEntry1::class);
+        RegistryOfEntriesHavingNames::add('NE2', NamedEntry2::class);
+
+        $choices = RegistryOfEntriesHavingNames::choices();
+        $this->assertEquals(NamedEntry1::getName(), $choices['NE1']);
+        $this->assertEquals(NamedEntry2::getName(), $choices['NE2']);
+    }
+
+    /** @test */
+    public function choices_returns_the_classnames_of_entries_without_get_name_method()
+    {
+        RegistryOfEntriesWithoutNames::add('NONAME1', NoNameEntry1::class);
+        RegistryOfEntriesWithoutNames::add('NONAME2', NoNameEntry2::class);
+
+        $choices = RegistryOfEntriesWithoutNames::choices();
+        $this->assertEquals(NoNameEntry1::class, $choices['NONAME1']);
+        $this->assertEquals(NoNameEntry2::class, $choices['NONAME2']);
     }
 }

@@ -26,3 +26,29 @@ composer require konekt/xtend
 
 ## Usage
 
+### Registries
+
+The following example shows a sample registry that holds reference to various PaymentGateway implementations.
+
+Steps:
+
+1. Create a class
+2. Add the `Registry` interface
+3. Use the `HasRegistry` and `RequiresClassOrInterface` traits
+4. Add the `$requiredInterface` static property, and set the interface
+
+```php
+final class PaymentGateways implements Registry
+{
+    use HasRegistry;
+    use RequiresClassOrInterface;
+    
+    private static string $requiredInterface = PaymentGateway::class;
+}
+```
+
+Having that, other developers can add new payment gateways:
+
+```php
+PaymentGateways::add('braintree', BrainTreePaymentGateway::class);
+```

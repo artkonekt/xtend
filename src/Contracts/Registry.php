@@ -42,6 +42,12 @@ interface Registry
     /** Returns the class of a registered entry or NULL if there's no such entry */
     public static function getClassOf(string $id): ?string;
 
+    public static function reset(): void;
+
+    public static function ids(): array;
+
+    public static function choices(): array;
+
     /** Make an instance of the registered entry and return it */
     public static function make(string $id, array $parameters = []): object;
 }
