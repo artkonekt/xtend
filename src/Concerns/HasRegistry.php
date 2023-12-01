@@ -26,9 +26,7 @@ trait HasRegistry
             return false;
         }
 
-        static::validate($class);
-
-        static::$registry[$id] = $class;
+        static::override($id, $class);
 
         return true;
     }
@@ -36,7 +34,6 @@ trait HasRegistry
     public static function override(string $id, string $class): void
     {
         static::validate($class);
-
         static::$registry[$id] = $class;
     }
 
