@@ -1,7 +1,7 @@
 # Xtend Changelog
 
-## Unreleased
-#### 2023-XX-YY
+## 1.1.0
+#### 2023-12-01
 
 - Fixed the shared registry bug by removing the `BaseRegistry` class. The traits need to be used instead.
 - Added the `Registry::ids()`, `Registry::reset()` and `Registry::choices()` methods
