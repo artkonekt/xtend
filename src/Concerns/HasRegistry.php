@@ -86,7 +86,7 @@ trait HasRegistry
         $result = [];
 
         foreach (self::$registry as $id => $class) {
-            $result[$id] = match(is_subclass_of($class, Registerable::class) || method_exists($class, 'getName')) {
+            $result[$id] = match (is_subclass_of($class, Registerable::class) || method_exists($class, 'getName')) {
                 true => $class::getName(),
                 default => $class,
             };
