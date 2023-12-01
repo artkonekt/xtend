@@ -19,7 +19,7 @@ trait RequiresClassOrInterface
     protected static function validate(string $class): void
     {
         if (property_exists(static::class, 'requiredInterface')) {
-            if (in_array(static::$requiredInterface, class_implements($class))) {
+            if (is_subclass_of($class, static::$requiredInterface)) {
                 return;
             }
 
@@ -29,7 +29,7 @@ trait RequiresClassOrInterface
         }
 
         if (property_exists(static::class, 'requiredClass')) {
-            if (in_array(static::$requiredClass, class_parents($class)) || $class === static::$requiredClass) {
+            if (is_subclass_of($class, static::$requiredClass) || $class === static::$requiredClass) {
                 return;
             }
 
