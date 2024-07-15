@@ -42,6 +42,11 @@ trait HasRegistry
         return static::$registry[$id] ?? null;
     }
 
+    public static function getIdOf(string $class): ?string
+    {
+        return array_search($class, static::$registry, true);
+    }
+
     public static function delete(string $id): bool
     {
         if (!array_key_exists($id, static::$registry)) {

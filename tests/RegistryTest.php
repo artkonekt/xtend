@@ -27,6 +27,8 @@ use Konekt\Extend\Tests\Dummies\TestWidget;
 use Konekt\Extend\Tests\Dummies\TestWidget2;
 use Konekt\Extend\Tests\Dummies\TestWidget3;
 use Konekt\Extend\Tests\Dummies\TestWidget4;
+use Konekt\Extend\Tests\Dummies\TestWidget5;
+use Konekt\Extend\Tests\Dummies\TestWidget6;
 use Konekt\Extend\Tests\Dummies\TestWidgetRegistry;
 use PHPUnit\Framework\TestCase;
 
@@ -58,6 +60,15 @@ class RegistryTest extends TestCase
     {
         TestWidgetRegistry::add('classy', TestWidget::class);
         $this->assertEquals(TestWidget::class, TestWidgetRegistry::getClassOf('classy'));
+    }
+
+    /** @test */
+    public function it_can_tell_the_id_of_a_registered_entry_by_class()
+    {
+        TestWidgetRegistry::add('test5', TestWidget5::class);
+        TestWidgetRegistry::add('test6', TestWidget6::class);
+        $this->assertEquals('test5', TestWidgetRegistry::getIdOf(TestWidget5::class));
+        $this->assertEquals('test6', TestWidgetRegistry::getIdOf(TestWidget6::class));
     }
 
     /** @test */
