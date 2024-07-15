@@ -44,7 +44,9 @@ trait HasRegistry
 
     public static function getIdOf(string $class): ?string
     {
-        return array_search($class, static::$registry, true);
+        $result = array_search($class, static::$registry, true);
+
+        return false === $result ? null : $result;
     }
 
     public static function delete(string $id): bool

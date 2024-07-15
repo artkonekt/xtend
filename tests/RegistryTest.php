@@ -72,6 +72,12 @@ class RegistryTest extends TestCase
     }
 
     /** @test */
+    public function the_get_id_of_method_returns_null_if_the_class_is_not_registered()
+    {
+        $this->assertNull(TestWidgetRegistry::getIdOf(\DateTime::class));
+    }
+
+    /** @test */
     public function an_entry_can_be_overridden()
     {
         TestWidgetRegistry::add('better', TestWidget::class);
