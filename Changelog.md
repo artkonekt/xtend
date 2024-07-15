@@ -1,7 +1,7 @@
 # Xtend Changelog
 
-## Unreleased
-#### 2024-XX-YY
+## 1.2.0
+#### 2024-07-15
 
 - Added the `HasRegistry::getIdOf()` method (it's not part of the `Registry` interface yet;will be added in v2.0)
 
