@@ -16,7 +16,6 @@ namespace Konekt\Extend;
 
 class TypedDictionary extends Dictionary
 {
-
     /** @var callable */
     protected $validator;
 

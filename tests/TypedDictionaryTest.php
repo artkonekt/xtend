@@ -48,7 +48,7 @@ class TypedDictionaryTest extends TestCase
     {
         $dict = TypedDictionary::ofClass(DateTime::class);
 
-        $anonymus = new class() extends DateTime {};
+        $anonymus = new class () extends DateTime {};
         $dict->set('today', $anonymus);
 
         $this->assertEquals($dict->get('today'), $anonymus);
@@ -82,7 +82,7 @@ class TypedDictionaryTest extends TestCase
     {
         $dict = TypedDictionary::ofInterface(DateTimeInterface::class);
 
-        $anonymus = new class() extends DateTime {};
+        $anonymus = new class () extends DateTime {};
         $dict->set('today', $anonymus);
 
         $this->assertEquals($dict->get('today'), $anonymus);

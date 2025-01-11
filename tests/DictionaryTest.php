@@ -156,4 +156,3 @@ class DictionaryTest extends TestCase
         $this->assertArrayHasKey('B', $check);
     }
 }
-
