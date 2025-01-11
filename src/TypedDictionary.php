@@ -78,6 +78,15 @@ class TypedDictionary extends Dictionary
         parent::set($key, $value);
     }
 
+    /** Returns a COPY of the Dictionary filtered */
+    public function filter(?callable $callback): static
+    {
+        return new static(
+            $this->validator,
+            array_filter($this->data, $callback, ARRAY_FILTER_USE_BOTH)
+        );
+    }
+
     /**
      * @throws \InvalidArgumentException
      */

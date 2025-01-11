@@ -18,6 +18,7 @@ use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 use InvalidArgumentException;
+use Konekt\Extend\Dictionary;
 use Konekt\Extend\TypedDictionary;
 use PHPUnit\Framework\TestCase;
 
@@ -140,5 +141,22 @@ class TypedDictionaryTest extends TestCase
             fn ($item) => $item instanceof DateTime ?: throw new InvalidArgumentException('Nope'),
             ['invalid' => 123],
         );
+    }
+
+    /** @test */
+    public function filtering_still_works()
+    {
+        $dict = TypedDictionary::ofInteger();
+        $dict->push([
+            'key1' => 123,
+            'key2' => 55,
+            'key3' => 12,
+            'key4' => 901,
+            'key5' => 101,
+        ]);
+
+        $gt100 = $dict->filter(fn($value) => $value > 100);
+
+        $this->assertCount(3, $gt100);
     }
 }
