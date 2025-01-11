@@ -18,7 +18,6 @@ use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 use InvalidArgumentException;
-use Konekt\Extend\Dictionary;
 use Konekt\Extend\TypedDictionary;
 use PHPUnit\Framework\TestCase;
 
@@ -155,7 +154,7 @@ class TypedDictionaryTest extends TestCase
             'key5' => 101,
         ]);
 
-        $gt100 = $dict->filter(fn($value) => $value > 100);
+        $gt100 = $dict->filter(fn ($value) => $value > 100);
 
         $this->assertCount(3, $gt100);
     }
