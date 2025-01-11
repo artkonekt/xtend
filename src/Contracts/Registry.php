@@ -42,8 +42,7 @@ interface Registry
     /** Returns the class of a registered entry or NULL if there's no such entry */
     public static function getClassOf(string $id): ?string;
 
-    // @todo Add this to the contract in v2
-    //public static function getIdOf(string $class): ?string;
+    public static function getIdOf(string $class): ?string;
 
     public static function reset(): void;
 

@@ -1,5 +1,12 @@
 # Xtend Changelog
 
+## Unreleased
+#### 2025-XX-YY
+
+- BC: Added the `getIdOf()` method to the Registry Interface
+
+---
+
 ## 1.2.0
 #### 2024-07-15
 
