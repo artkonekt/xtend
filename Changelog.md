@@ -4,6 +4,7 @@
 #### 2025-XX-YY
 
 - BC: Added the `getIdOf()` method to the Registry Interface
+- Added the generic `Dictionary` and `TypedDictionary` classes
 
 ---
 
