@@ -177,12 +177,11 @@ class DictionaryTest extends TestCase
             'key6' => false,
         ]);
 
-        $numbers = $dict->filter(fn($value) => is_numeric($value));
-        $bools = $dict->filter(fn($value) => is_bool($value));
+        $numbers = $dict->filter(fn ($value) => is_numeric($value));
+        $bools = $dict->filter(fn ($value) => is_bool($value));
 
         $this->assertCount(6, $dict);
         $this->assertCount(3, $numbers);
         $this->assertCount(2, $bools);
-
     }
 }
