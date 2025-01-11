@@ -73,6 +73,12 @@ class Dictionary implements ArrayAccess, Countable, IteratorAggregate
         return $this->data;
     }
 
+    /** Returns a COPY of the Dictionary filtered */
+    public function filter(?callable $callback): static
+    {
+        return new static(array_filter($this->data, $callback, ARRAY_FILTER_USE_BOTH));
+    }
+
     public function offsetExists($offset): bool
     {
         return $this->has($offset);

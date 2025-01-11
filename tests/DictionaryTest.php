@@ -164,4 +164,25 @@ class DictionaryTest extends TestCase
         $this->assertArrayHasKey('A', $check);
         $this->assertArrayHasKey('B', $check);
     }
+
+    /** @test */
+    public function it_can_filter_the_entries()
+    {
+        $dict = new Dictionary([
+            'key1' => 123,
+            'key2' => 55.12,
+            'key3' => 0,
+            'key4' => 'string',
+            'key5' => true,
+            'key6' => false,
+        ]);
+
+        $numbers = $dict->filter(fn($value) => is_numeric($value));
+        $bools = $dict->filter(fn($value) => is_bool($value));
+
+        $this->assertCount(6, $dict);
+        $this->assertCount(3, $numbers);
+        $this->assertCount(2, $bools);
+
+    }
 }
