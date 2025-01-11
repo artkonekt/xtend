@@ -31,6 +31,15 @@ class DictionaryTest extends TestCase
     }
 
     /** @test */
+    public function initial_data_can_be_passed_to_the_constructor(): void
+    {
+        $dict = new Dictionary(['name' => 'Phillipp', 'age' => 40]);
+
+        $this->assertEquals('Phillipp', $dict['name']);
+        $this->assertEquals(40, $dict['age']);
+    }
+
+    /** @test */
     public function it_returns_null_for_inexistent_elements(): void
     {
         $dict = new Dictionary();

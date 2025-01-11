@@ -131,4 +131,14 @@ class TypedDictionaryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $dict->set('key', 'true');
     }
+
+    /** @test */
+    public function initial_data_passed_to_the_constructor_gets_validated()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new TypedDictionary(
+            fn ($item) => $item instanceof DateTime ?: throw new InvalidArgumentException('Nope'),
+            ['invalid' => 123],
+        );
+    }
 }

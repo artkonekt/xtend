@@ -19,9 +19,10 @@ class TypedDictionary extends Dictionary
     /** @var callable */
     protected $validator;
 
-    public function __construct(callable $validator)
+    public function __construct(callable $validator, array $data = [])
     {
         $this->validator = $validator;
+        parent::__construct($data);
     }
 
     public static function ofClass(string $class): self

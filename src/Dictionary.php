@@ -23,6 +23,11 @@ class Dictionary implements ArrayAccess, Countable, IteratorAggregate
 {
     protected array $data = [];
 
+    public function __construct(array $data = [])
+    {
+        $this->push($data);
+    }
+
     public function set(string $key, mixed $value): void
     {
         $this->data[$key] = $value;
