@@ -1,7 +1,7 @@
 # Xtend Changelog
 
-## Unreleased
-#### 2025-XX-YY
+## 2.0.0
+#### 2025-03-18
 
 - BC: Added the `getIdOf()` method to the Registry Interface
 - Added the generic `Dictionary` and `TypedDictionary` classes
