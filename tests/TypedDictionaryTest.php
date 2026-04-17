@@ -40,7 +40,7 @@ class TypedDictionaryTest extends TestCase
         $dict = TypedDictionary::ofClass(DateTime::class);
 
         $this->expectException(InvalidArgumentException::class);
-        $dict->set('today', new \DateTimeImmutable());
+        $dict->set('today', new DateTimeImmutable());
     }
 
     /** @test */
